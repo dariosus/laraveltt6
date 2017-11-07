@@ -1,20 +1,24 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="/css/app.css">
-  </head>
-  <body>
-    <h1>Mis Géneros</h1>
-    <ul>
-      <?php foreach($generos as $key => $genero) : ?>
+@extends("masterPage")
+
+@section("titulo")
+  Listado de Géneros
+@endsection
+
+@section("principal")
+  <h1>Mis Géneros</h1>
+  <ul>
+    @if (count($generos) > 0)
+      @foreach($generos as $key => $genero)
         <li>
-          <a href="/genero/<?=$key?>">
-            <?=$genero?>
+          <a href="/genero/{{$key}}">
+            {{$genero}}
           </a>
         </li>
-      <?php endforeach;?>
-    </ul>
-  </body>
-</html>
+      @endforeach
+    @else
+      <p>
+        No hay géneros
+      </p>
+    @endif
+  </ul>
+@endsection
