@@ -11,6 +11,10 @@
 |
 */
 
+Route::get("/agregarPelicula", "PeliculasController@agregar");
+
+Route::post("/agregarPelicula", "PeliculasController@guardar");
+
 Route::get("/actores", "ActoresController@listado");
 
 Route::get("/peliculas", "PeliculasController@listado");
