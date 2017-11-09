@@ -11,11 +11,15 @@
 |
 */
 
+Route::get("/actores", "ActoresController@listado");
+
 Route::get("/peliculas", "PeliculasController@listado");
 
 Route::get("/pelicula/{id}", "PeliculasController@detalle");
 
 Route::get("/generos", "GenerosController@listado");
+
+Route::get("/pelisBuenRating", "PeliculasController@rating");
 
 Route::get("/saludar/{nombre}/{apellido}", function($nombre, $apellido) {
   echo "Hola $nombre $apellido";

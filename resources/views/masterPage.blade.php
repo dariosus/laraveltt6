@@ -24,6 +24,16 @@
               Géneros
             </a>
           </li>
+          <li>
+            <a href="/actores">
+              Actores
+            </a>
+          </li>
+          <li>
+            <a href="/pelisBuenRating">
+              Pelis Buen Rating
+            </a>
+          </li>
         </ul>
       </nav>
     </header>

@@ -3,16 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Pelicula;
 
 class PeliculasController extends Controller
 {
     public function listado() {
-      $peliculas = [
-        "Toy Story",
-        "Toy Story 2",
-        "Buscando a Nemo",
-        "Ratatuil"
-      ];
+      $peliculas = Pelicula::all();
 
       $VAC = compact("peliculas");
 
@@ -20,17 +16,21 @@ class PeliculasController extends Controller
     }
 
     public function detalle($id) {
-      $peliculas = [
-        "Toy Story",
-        "Toy Story 2",
-        "Buscando a Nemo",
-        "Ratatuil"
-      ];
-
-      $peliFinal = $peliculas[$id];
+      $peliFinal = Pelicula::find($id);
 
       $VAC = compact("peliFinal");
 
       return view("detallePelicula",$VAC);
+    }
+
+    public function rating() {
+      $peliculas = Pelicula::where("rating", ">", 9)
+        ->orderBy("title", "DESC")
+        ->take(3)
+        ->get();
+
+      $VAC = compact("peliculas");
+
+      return view("listadoPeliculas", $VAC);
     }
 }

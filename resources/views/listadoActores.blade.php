@@ -5,13 +5,13 @@
 @endsection
 
 @section("principal")
-  <h1>Mis Géneros</h1>
+  <h1>Mis Actores</h1>
   <ul>
-    @if (count($generos) > 0)
-      @foreach($generos as $key => $genero)
+    @if (count($actores) > 0)
+      @foreach($actores as $key => $actor)
         <li>
-          <a href="/genero/{{$genero->id}}">
-            {{$genero->name}}
+          <a href="/actor/{{$actor->id}}">
+            {{$actor->getNombreCompleto()}}
           </a>
         </li>
       @endforeach

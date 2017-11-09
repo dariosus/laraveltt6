@@ -9,8 +9,8 @@
   <ul>
     @forelse($peliculas as $key => $pelicula)
       <li>
-        <a href="/pelicula/{{$key}}">
-          {{$pelicula}}
+        <a href="/pelicula/{{$pelicula->id}}">
+          {{$pelicula->title}}
         </a>
       </li>
     @empty
