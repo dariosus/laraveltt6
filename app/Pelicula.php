@@ -11,4 +11,14 @@ class Pelicula extends Model
     //protected $timestamps = false;
 
     protected $guarded = [];
+
+    public function getReleaseDate() {
+      if ($this->release_date) {
+
+
+        $splits = explode(" ", $this->release_date);
+        return $splits[0];
+      }
+
+    }
 }

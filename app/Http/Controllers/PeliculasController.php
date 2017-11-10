@@ -94,4 +94,45 @@ class PeliculasController extends Controller
 
       return redirect("/peliculas");
     }
+
+    public function editar($id){
+      $pelicula = Pelicula::find($id);
+
+      $generos = Genero::all();
+
+      $VAC = compact("pelicula", "generos");
+
+      return view("editarPelicula", $VAC);
+
+    }
+
+    public function actualizar(Request $request){
+      $reglas = [
+          "titulo" => "required|string",
+          "premios" => "required|integer|min:0",
+          "rating" =>  "required|numeric|min:0|max:10",
+          "fecha_de_estreno" => "required|date",
+          "duracion" => "required|integer|min:0"
+      ];
+
+      $mensajes = [
+        "required" => "El campo :attribute es requerido",
+        "min" => "El campo :attribute tiene un mínimo de :min"
+      ];
+
+      $this->validate($request, $reglas, $mensajes);
+
+      $pelicula = Pelicula::find($request["id"]);
+
+      $pelicula->title = $request["titulo"];
+      $pelicula->awards = $request["premios"];
+      $pelicula->length = $request["duracion"];
+      $pelicula->release_date =$request["fecha_de_estreno"];
+      $pelicula->rating = $request["rating"];
+      $pelicula->genre_id = $request["genero"];
+
+      $pelicula->save();
+
+      return redirect("/pelicula/" . $request["id"]);
+    }
 }

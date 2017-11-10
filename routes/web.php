@@ -11,6 +11,10 @@
 |
 */
 
+Route::patch("/editarPelicula", "PeliculasController@actualizar");
+
+Route::get("/editarPelicula/{id}", "PeliculasController@editar");
+
 Route::get("/borrarPelicula/{id}", "PeliculasController@borrar");
 
 Route::get("/agregarPelicula", "PeliculasController@agregar");

@@ -13,4 +13,7 @@
   <a href="/borrarPelicula/{{$peliFinal->id}}">
     <button type="button" name="button" class="btn btn-danger">Borrar</button>
   </a>
+  <a href="/editarPelicula/{{$peliFinal->id}}">
+    <button type="button" name="button" class="btn btn-warning">Editar</button>
+  </a>
 @endsection
