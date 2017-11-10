@@ -8,6 +8,17 @@ use App\Genero;
 
 class PeliculasController extends Controller
 {
+    public function borrar($id) {
+      $pelicula = Pelicula::find($id);
+
+      //$pelicula->title = "Sarsasa";
+      //$pelicula->save();
+
+      $pelicula->delete();
+
+      return redirect("/peliculas");
+    }
+
     public function agregar() {
       $generos = Genero::all();
 
@@ -59,6 +70,27 @@ class PeliculasController extends Controller
       ];
 
       $this->validate($request, $reglas, $mensajes);
+
+      $pelicula = new Pelicula();
+
+      $pelicula->title = $request["titulo"];
+      $pelicula->awards = $request["premios"];
+      $pelicula->length = $request["duracion"];
+      $pelicula->release_date =$request["fecha_de_estreno"];
+      $pelicula->rating = $request["rating"];
+      $pelicula->genre_id = $request["genero"];
+
+      $pelicula->save();
+
+      /*
+      Pelicula::create([
+        "titulo" => $request["titulo"],
+        "awards" => $request["premios"]
+        ...
+      ]);
+      */
+
+      //Pelicula::create($request->all());
 
       return redirect("/peliculas");
     }

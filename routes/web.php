@@ -11,6 +11,8 @@
 |
 */
 
+Route::get("/borrarPelicula/{id}", "PeliculasController@borrar");
+
 Route::get("/agregarPelicula", "PeliculasController@agregar");
 
 Route::post("/agregarPelicula", "PeliculasController@guardar");
