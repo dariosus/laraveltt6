@@ -13,6 +13,11 @@
           <a href="/genero/{{$genero->id}}">
             {{$genero->name}}
           </a>
+          <ul>
+            @foreach ($genero->peliculas as $pelicula)
+              {{$pelicula->title}}
+            @endforeach
+          </ul>
         </li>
       @endforeach
     @else

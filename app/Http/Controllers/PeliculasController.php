@@ -61,7 +61,8 @@ class PeliculasController extends Controller
           "premios" => "required|integer|min:0",
           "rating" =>  "required|numeric|min:0|max:10",
           "fecha_de_estreno" => "required|date",
-          "duracion" => "required|integer|min:0"
+          "duracion" => "required|integer|min:0",
+          "favorita" => "required"
       ];
 
       $mensajes = [
