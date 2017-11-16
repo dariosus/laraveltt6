@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Pelicula;
 use App\Genero;
+use Auth;
 
 class PeliculasController extends Controller
 {
@@ -20,6 +21,10 @@ class PeliculasController extends Controller
     }
 
     public function agregar() {
+      if (Auth::check() == false) {
+        return redirect("/peliculas");
+      }
+
       $generos = Genero::all();
 
       $VAC = compact("generos");
@@ -29,8 +34,9 @@ class PeliculasController extends Controller
 
     public function listado() {
       $peliculas = Pelicula::all();
+      $usuario = Auth::user();
 
-      $VAC = compact("peliculas");
+      $VAC = compact("peliculas", "usuario");
 
       return view("listadoPeliculas", $VAC);
     }

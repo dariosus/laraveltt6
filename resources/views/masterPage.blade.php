@@ -34,6 +34,18 @@
               Pelis Buen Rating
             </a>
           </li>
+          @if (isset($usuario) && $usuario != null)
+            <li>
+              Hola {{$usuario->name}}
+            </li>
+          @else
+            <li>
+              <a href="/register">Registración</a>
+            </li>
+            <li>
+              <a href="/login">Login</a>
+            </li>
+          @endif
         </ul>
       </nav>
     </header>
