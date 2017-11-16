@@ -17,15 +17,15 @@ Route::get("/editarPelicula/{id}", "PeliculasController@editar");
 
 Route::get("/borrarPelicula/{id}", "PeliculasController@borrar");
 
-Route::get("/agregarPelicula", "PeliculasController@agregar");
+Route::get("/agregarPelicula", "PeliculasController@agregar")->middleware("auth")->middleware("saludar");
 
-Route::post("/agregarPelicula", "PeliculasController@guardar");
+Route::post("/agregarPelicula", "PeliculasController@guardar")->middleware("auth");
 
 Route::get("/actores", "ActoresController@listado");
 
-Route::get("/peliculas", "PeliculasController@listado");
+Route::get("/peliculas", "PeliculasController@listado")->middleware("saludar");
 
-Route::get("/pelicula/{id}", "PeliculasController@detalle");
+Route::get("/pelicula/{id}", "PeliculasController@detalle")->middleware("saludar");
 
 Route::get("/generos", "GenerosController@listado");
 

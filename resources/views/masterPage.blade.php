@@ -34,9 +34,9 @@
               Pelis Buen Rating
             </a>
           </li>
-          @if (isset($usuario) && $usuario != null)
+          @if (session("usuario"))
             <li>
-              Hola {{$usuario->name}}
+              Hola {{session("usuario")->name}}
             </li>
           @else
             <li>
