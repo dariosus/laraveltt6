@@ -16,7 +16,7 @@
 	    </div>
 	@endif
 
-  <form class="" action="/agregarPelicula" method="post">
+  <form class="" action="/agregarPelicula" method="post" enctype="multipart/form-data">
     <!-- IMPORTANTE - Capa de seguridad de Laravel !-->
     {{ csrf_field() }}
     <!-- FIN IMPORTANTE !-->
@@ -39,6 +39,10 @@
     <div class="form-group">
       <label for="">Fecha de estreno</label>
       <input class="form-control" type="date" name="fecha_de_estreno" value="{{old("fecha_de_estreno")}}">
+    </div>
+    <div class="form-group">
+      <label for="">Poster</label>
+      <input class="form-control" type="file" name="poster">
     </div>
     <div class="form-group">
       <label for="">Genero</label>

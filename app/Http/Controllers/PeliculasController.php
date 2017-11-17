@@ -33,7 +33,7 @@ class PeliculasController extends Controller
     }
 
     public function listado() {
-      $peliculas = Pelicula::all();
+      $peliculas = Pelicula::paginate(5);
       $usuario = Auth::user();
 
       $VAC = compact("peliculas", "usuario");
@@ -53,7 +53,7 @@ class PeliculasController extends Controller
       $peliculas = Pelicula::where("rating", ">", 9)
         ->orderBy("title", "DESC")
         ->take(3)
-        ->get();
+        ->paginate(2);
 
       $VAC = compact("peliculas");
 
@@ -68,7 +68,6 @@ class PeliculasController extends Controller
           "rating" =>  "required|numeric|min:0|max:10",
           "fecha_de_estreno" => "required|date",
           "duracion" => "required|integer|min:0",
-          "favorita" => "required"
       ];
 
       $mensajes = [
@@ -78,6 +77,10 @@ class PeliculasController extends Controller
 
       $this->validate($request, $reglas, $mensajes);
 
+      $poster = $request->file("poster");
+
+      $nombrePoster = $poster->storePublicly("public/posters");
+
       $pelicula = new Pelicula();
 
       $pelicula->title = $request["titulo"];
@@ -86,6 +89,7 @@ class PeliculasController extends Controller
       $pelicula->release_date =$request["fecha_de_estreno"];
       $pelicula->rating = $request["rating"];
       $pelicula->genre_id = $request["genero"];
+      $pelicula->poster = $nombrePoster;
 
       $pelicula->save();
 

@@ -29,4 +29,8 @@ class Pelicula extends Model
     public function actores() {
       return $this->belongsToMany(Actor::class, "actor_movie", "movie_id", "actor_id");
     }
+
+    public function rutaPoster() {
+      return "/storage" . str_replace("public", "", $this->poster);
+    }
 }

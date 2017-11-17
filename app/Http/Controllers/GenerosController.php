@@ -10,6 +10,8 @@ class GenerosController extends Controller
   public function listado() {
     $generos = Genero::all();
 
+    dd($generos);
+
     $VAC = compact("generos");
 
   return view("listadoGeneros", $VAC);

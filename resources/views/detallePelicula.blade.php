@@ -11,7 +11,7 @@
   <p>Premios: {{$peliFinal->awards}}</p>
   <p>Fecha de estreno: {{$peliFinal->release_date}}</p>
   <p>Genero: {{$peliFinal->genero->name}}</p>
-
+  <img src="{{$peliFinal->rutaPoster()}}" alt="">
   <p>Actores:
     <ul>
       @foreach($peliFinal->actores as $actor)
