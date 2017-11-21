@@ -19,5 +19,4 @@
       </p>
     @endforelse
   </ul>
-  {{$peliculas->links()}}
 @endsection

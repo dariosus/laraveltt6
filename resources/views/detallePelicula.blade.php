@@ -27,4 +27,17 @@
   <a href="/editarPelicula/{{$peliFinal->id}}">
     <button type="button" name="button" class="btn btn-warning">Editar</button>
   </a>
+  @if ($enCarrito)
+    <form class="" action="/quitarCarrito" method="post">
+      {{csrf_field()}}
+      <input type="hidden" name="id" value="{{$peliFinal->id}}">
+      <input type="submit" name="" value="Quitar del carrito" class="btn btn-warning">
+    </form>
+  @else
+    <form class="" action="/agregarACarrito" method="post">
+      {{csrf_field()}}
+      <input type="hidden" name="id" value="{{$peliFinal->id}}">
+      <input type="submit" name="" value="Agregar a carrito" class="btn btn-success">
+    </form>
+  @endif
 @endsection

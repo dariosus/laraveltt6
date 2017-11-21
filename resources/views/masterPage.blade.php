@@ -34,6 +34,17 @@
               Pelis Buen Rating
             </a>
           </li>
+          <li>
+            <a href="/carrito">
+              Mi carrito
+            </a>
+          </li>
+          <li>
+            <form class="" action="/buscador" method="GET">
+              <input type="text" name="buscador" value="">
+              <input type="submit" name="" value="Buscar" class="btn btn-default">
+            </form>
+          </li>
           @if (session("usuario"))
             <li>
               Hola {{session("usuario")->name}}

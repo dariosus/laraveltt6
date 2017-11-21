@@ -6,9 +6,22 @@ use Illuminate\Http\Request;
 use App\Pelicula;
 use App\Genero;
 use Auth;
+use Curl;
 
 class PeliculasController extends Controller
 {
+    public function buscar(Request $request) {
+      $buscar = $request["buscador"];
+
+      $peliculas = Pelicula::where("title", "like", "%$buscar%")->get();
+
+      $usuario = Auth::user();
+
+      $VAC = compact("peliculas", "usuario");
+
+      return view("listadoPeliculas", $VAC);
+    }
+
     public function borrar($id) {
       $pelicula = Pelicula::find($id);
 
@@ -26,14 +39,17 @@ class PeliculasController extends Controller
       }
 
       $generos = Genero::all();
+      //$paises = Curl::to('https://restcountries.eu/rest/v2/all')->asJson()->get();
 
-      $VAC = compact("generos");
+
+
+      $VAC = compact("generos", "paises");
 
       return view("agregarPelicula", $VAC);
     }
 
     public function listado() {
-      $peliculas = Pelicula::paginate(5);
+      $peliculas = Pelicula::all();
       $usuario = Auth::user();
 
       $VAC = compact("peliculas", "usuario");
@@ -44,7 +60,15 @@ class PeliculasController extends Controller
     public function detalle($id) {
       $peliFinal = Pelicula::find($id);
 
-      $VAC = compact("peliFinal");
+      $carrito = session("carrito");
+
+      if ($carrito && in_array($id, $carrito)) {
+        $enCarrito = true;
+      } else {
+        $enCarrito = false;
+      }
+
+      $VAC = compact("peliFinal", "enCarrito");
 
       return view("detallePelicula",$VAC);
     }

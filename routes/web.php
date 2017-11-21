@@ -11,6 +11,18 @@
 |
 */
 
+Route::get("/buscador", "PeliculasController@buscar");
+
+Route::post("/agregarACarrito", "CarritoController@agregar");
+Route::post("/quitarCarrito", "CarritoController@quitar");
+Route::get("/carrito", "CarritoController@listar");
+
+Route::get("/registrarAdmin", "MiRegisterController@add")->middleware("admin");
+Route::post("/registrarAdmin", "MiRegisterController@store")->middleware("admin");
+
+Route::get("/api/peliculas", "ApiController@peliculas");
+Route::get("/api/peliculas/{id}", "ApiController@detallePeli");
+
 Route::patch("/editarPelicula", "PeliculasController@actualizar");
 
 Route::get("/editarPelicula/{id}", "PeliculasController@editar");
