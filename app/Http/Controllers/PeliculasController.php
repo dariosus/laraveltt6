@@ -68,6 +68,7 @@ class PeliculasController extends Controller
           "rating" =>  "required|numeric|min:0|max:10",
           "fecha_de_estreno" => "required|date",
           "duracion" => "required|integer|min:0",
+          "poster" => "image"
       ];
 
       $mensajes = [
@@ -78,6 +79,7 @@ class PeliculasController extends Controller
       $this->validate($request, $reglas, $mensajes);
 
       $poster = $request->file("poster");
+      dd($poster);
 
       $nombrePoster = $poster->storePublicly("public/posters");
 
